@@ -25,6 +25,11 @@ export default function App() {
         id: Math.random().toString(),
       },
     ])
+    endAddGoalHandler()
+  }
+
+  function endAddGoalHandler() {
+    setModalIsVisible(false)
   }
 
   function deleteGoalHandler(key) {
@@ -44,6 +49,7 @@ export default function App() {
         <GoalInput
           visible={modalIsVisible}
           onAddGoal={addGoalHandler}
+          onCancel={endAddGoalHandler}
         />
       )}
       <View style={styles.goalsContainer}>
