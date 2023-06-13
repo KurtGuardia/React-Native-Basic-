@@ -11,13 +11,15 @@ export default function App() {
       ...currentGoals,
       {
         text: enteredGoalText,
-        key: Math.random().toString(),
+        id: Math.random().toString(),
       },
     ])
   }
 
   function deleteGoalHandler(key) {
-    console.log('DELTE')
+    setCourseGoals((currentGoals) => {
+      return currentGoals.filter((goal) => goal.id !== key)
+    })
   }
 
   return (
@@ -28,11 +30,13 @@ export default function App() {
           renderItem={(itemData) => (
             <GoalItem
               text={itemData.item.text}
+              id={itemData.item.id}
               onDelete={deleteGoalHandler}
             />
           )}
           data={courseGoals}
           // alwaysBounceVertical={true}
+          keyExtractor={(item, index) => item.id}
         />
       </View>
     </View>
